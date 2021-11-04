@@ -17,6 +17,7 @@
 </head>
 <body>
 <div align="center" style="font-size: 40px;">
+    <p id="time">0:00</p>
     <div id ='diem'>Điểm : 0</div>
     <div id="expression"></div>
     <div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic example">
@@ -57,7 +58,7 @@
             if(eval(item.replace("x","*"))==value){
             if(arrayExpression.length==0){
                 document.getElementById("code").value='';
-                alert("BẠN ĐÃ THUỘC BẢNG CỬU CHƯƠNG. BẠN ĐƯỢC "+diem+" ĐIỂM.");
+                alert("BẠN ĐÃ THUỘC BẢNG CỬU CHƯƠNG. BẠN ĐƯỢC "+diem+" ĐIỂM. THỜI GIAN HOÀN THÀNH LÀ "+ millisToMinutesAndSeconds(Date.now()-d));
             location.reload();
             }
             diem++;
@@ -69,7 +70,7 @@
 
         }
         else {
-            alert("BẠN ĐÃ THUA. "+diem+" ĐIỂM.");
+            alert("BẠN ĐÃ THUA. "+diem+" ĐIỂM. THỜI GIAN : "+millisToMinutesAndSeconds(Date.now()-d));
             location.reload();
         }
         }
@@ -81,6 +82,16 @@ if (index > -1) {
   arrayExpression.splice(index, 1);
 }
     }
+    var myVar = setInterval(myTimer, 1000);
+ var d = Date.now();
+function myTimer() {
+  document.getElementById("time").innerHTML = millisToMinutesAndSeconds(Date.now()-d);
+}
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
 </script>
 </body>
 </html>
