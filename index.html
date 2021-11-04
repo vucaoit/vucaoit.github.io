@@ -46,34 +46,66 @@
     </div>
 </div>
 </div>
+<div style="text-align: center; font-size: 25px;">
+    <div id="analytic" style="display: inline-block; text-align: left;"></div>
+</div>
 <script>
     let element = document.getElementById("expression");
     let diem =0;
-    let arrayExpression = new Array('2 x 2','2 x 3','2 x 4','2 x 5','2 x 6','2 x 7','2 x 8','2 x 9','3 x 2','3 x 3','3 x 4','3 x 5','3 x 6','3 x 7','3 x 8','3 x 9','4 x 2','4 x 3','4 x 4','4 x 5','4 x 6','4 x 7','4 x 8','4 x 9','5 x 2','5 x 3','5 x 4','5 x 5','5 x 6','5 x 7','5 x 8','5 x 9','6 x 2','6 x 3','6 x 4','6 x 5','6 x 6','6 x 7','6 x 8','6 x 9','7 x 2','7 x 3','7 x 4','7 x 5','7 x 6','7 x 7','7 x 8','7 x 9','8 x 2','8 x 3','8 x 4','8 x 5','8 x 6','8 x 7','8 x 8','8 x 9','9 x 2','9 x 3','9 x 4','9 x 5','9 x 6','9 x 7','9 x 8','9 x 9');
+    let map = new Map();
+    // let arrayExpression = new Array('2 x 2','2 x 3','2 x 4','2 x 5','2 x 6','2 x 7','2 x 8','2 x 9','3 x 2','3 x 3','3 x 4','3 x 5','3 x 6','3 x 7','3 x 8','3 x 9','4 x 2','4 x 3','4 x 4','4 x 5','4 x 6','4 x 7','4 x 8','4 x 9','5 x 2','5 x 3','5 x 4','5 x 5','5 x 6','5 x 7','5 x 8','5 x 9','6 x 2','6 x 3','6 x 4','6 x 5','6 x 6','6 x 7','6 x 8','6 x 9','7 x 2','7 x 3','7 x 4','7 x 5','7 x 6','7 x 7','7 x 8','7 x 9','8 x 2','8 x 3','8 x 4','8 x 5','8 x 6','8 x 7','8 x 8','8 x 9','9 x 2','9 x 3','9 x 4','9 x 5','9 x 6','9 x 7','9 x 8','9 x 9');
+    let arrayExpression = new Array('2 x 2','2 x 3','2 x 4','2 x 5','2 x 6','2 x 7','2 x 8','2 x 9','3 x 2','3 x 3','3 x 4','3 x 5','3 x 6');
     var item = arrayExpression[Math.floor(Math.random()*arrayExpression.length)];
     element.innerHTML=item+"=";
     arrayRemove(item);
+    let startCal=Date.now();
     function check(value) {
+
         if(value!=""){
+            map.set(item+"="+value,(Date.now()-startCal)/1000);
             if(eval(item.replace("x","*"))==value){
-            if(arrayExpression.length==0){
+                if(arrayExpression.length==0){
                 document.getElementById("code").value='';
                 alert("BẠN ĐÃ THUỘC BẢNG CỬU CHƯƠNG. BẠN ĐƯỢC "+diem+" ĐIỂM. THỜI GIAN HOÀN THÀNH LÀ "+ millisToMinutesAndSeconds(Date.now()-d));
-            location.reload();
-            }
+                xuat(map);
+                clearInterval(myVar);
+                }
             diem++;
             document.getElementById('diem').innerHTML = "Điểm : "+diem;
             item = arrayExpression[Math.floor(Math.random()*arrayExpression.length)];
             element.innerHTML=item+"=";
+            if(item==undefined)element.innerHTML="Done!";
             arrayRemove(item);
             document.getElementById("code").value='';
-
+            startCal=Date.now();
+            }
+            else {
+                // alert("BẠN ĐÃ THUA. "+diem+" ĐIỂM. THỜI GIAN : "+millisToMinutesAndSeconds(Date.now()-d));
+                // location.reload();
+                map.set(item+"="+value,0);
+                if(arrayExpression.length==0){
+                document.getElementById("code").value='';
+                alert("BẠN ĐÃ THUỘC BẢNG CỬU CHƯƠNG. BẠN ĐƯỢC "+diem+" ĐIỂM. THỜI GIAN HOÀN THÀNH LÀ "+ millisToMinutesAndSeconds(Date.now()-d));
+                xuat(map);
+                clearInterval(myVar);
+                }
+                item = arrayExpression[Math.floor(Math.random()*arrayExpression.length)];
+                element.innerHTML=item+"=";
+                if(item==undefined)element.innerHTML="Done!";
+                arrayRemove(item);
+                document.getElementById("code").value='';
+                startCal=Date.now();
+            }
         }
-        else {
-            alert("BẠN ĐÃ THUA. "+diem+" ĐIỂM. THỜI GIAN : "+millisToMinutesAndSeconds(Date.now()-d));
-            location.reload();
+    }
+    function xuat(maparr) {
+        // body...
+        let temp="";
+        let mapSort1 = new Map([...maparr.entries()].sort((a, b) => b[1] - a[1]));
+        for (const [key, value] of mapSort1.entries()) {
+            temp+=key+" : "+value+"s<br>";
         }
-        }
+        document.getElementById("analytic").innerHTML=temp;
     }
     function arrayRemove(value) { 
     
