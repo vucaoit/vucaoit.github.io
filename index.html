@@ -1,128 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<style>
-    .btn{
-        font-size: 25px;
-        font-weight: bold;
-    }
-</style>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="baucuatomca">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>baucuatomca</title>
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<div align="center" style="font-size: 40px;">
-    <p id="time">0:00</p>
-    <div id ='diem'>Điểm : 0</div>
-    <div id="expression"></div>
-    <div class="btn-group-vertical ml-4 mt-4" role="group" aria-label="Basic example">
-    <div class="btn-group btn-group-*">
-        <input class="text-center form-control-lg mb-2" id="code">
-    </div>
-    <div class="btn-group btn-group-*">
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '1';">1</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '2';">2</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '3';">3</button>
-    </div>
-    <div class="btn-group btn-group-*">
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '4';">4</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '5';">5</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '6';">6</button>
-    </div>
-    <div class="btn-group btn-group-*">
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '7';">7</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '8';">8</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '9';">9</button>
-    </div>
-    <div class="btn-group btn-group-*">
-        <button type="button" class="btn btn-danger py-3" onclick="document.getElementById('code').value=document.getElementById('code').value.slice(0, -1);"><</button>
-        <button type="button" class="btn btn-outline-secondary py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '0';">0</button>
-        <button type="button" class="btn btn-primary py-3" onclick="check(document.getElementById('code').value)">OK</button>
-    </div>
-</div>
-</div>
-<div style="text-align: center; font-size: 25px;">
-    <div id="analytic" style="display: inline-block; text-align: left;"></div>
-</div>
-<script>
-    let element = document.getElementById("expression");
-    let diem =0;
-    let map = new Map();
-    let arrayExpression = new Array('2 x 2','2 x 3','2 x 4','2 x 5','2 x 6','2 x 7','2 x 8','2 x 9','3 x 2','3 x 3','3 x 4','3 x 5','3 x 6','3 x 7','3 x 8','3 x 9','4 x 2','4 x 3','4 x 4','4 x 5','4 x 6','4 x 7','4 x 8','4 x 9','5 x 2','5 x 3','5 x 4','5 x 5','5 x 6','5 x 7','5 x 8','5 x 9','6 x 2','6 x 3','6 x 4','6 x 5','6 x 6','6 x 7','6 x 8','6 x 9','7 x 2','7 x 3','7 x 4','7 x 5','7 x 6','7 x 7','7 x 8','7 x 9','8 x 2','8 x 3','8 x 4','8 x 5','8 x 6','8 x 7','8 x 8','8 x 9','9 x 2','9 x 3','9 x 4','9 x 5','9 x 6','9 x 7','9 x 8','9 x 9');
-    var item = arrayExpression[Math.floor(Math.random()*arrayExpression.length)];
-    element.innerHTML=item+"=";
-    arrayRemove(item);
-    let startCal=Date.now();
-    function check(value) {
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    var serviceWorkerVersion = null;
+    var scriptLoaded = false;
+    function loadMainDartJs() {
+      if (scriptLoaded) {
+        return;
+      }
+      scriptLoaded = true;
+      var scriptTag = document.createElement('script');
+      scriptTag.src = 'main.dart.js';
+      scriptTag.type = 'application/javascript';
+      document.body.append(scriptTag);
+    }
 
-        if(value!=""){
-            map.set(item+"="+value,(Date.now()-startCal)/1000);
-            if(eval(item.replace("x","*"))==value){
-                if(arrayExpression.length==0){
-                document.getElementById("code").value='';
-                alert("BẠN ĐÃ THUỘC BẢNG CỬU CHƯƠNG. BẠN ĐƯỢC "+diem+" ĐIỂM. THỜI GIAN HOÀN THÀNH LÀ "+ millisToMinutesAndSeconds(Date.now()-d));
-                xuat(map);
-                clearInterval(myVar);
+    if ('serviceWorker' in navigator) {
+      // Service workers are supported. Use them.
+      window.addEventListener('load', function () {
+        // Wait for registration to finish before dropping the <script> tag.
+        // Otherwise, the browser will load the script multiple times,
+        // potentially different versions.
+        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
+        navigator.serviceWorker.register(serviceWorkerUrl)
+          .then((reg) => {
+            function waitForActivation(serviceWorker) {
+              serviceWorker.addEventListener('statechange', () => {
+                if (serviceWorker.state == 'activated') {
+                  console.log('Installed new service worker.');
+                  loadMainDartJs();
                 }
-            diem++;
-            document.getElementById('diem').innerHTML = "Điểm : "+diem;
-            item = arrayExpression[Math.floor(Math.random()*arrayExpression.length)];
-            element.innerHTML=item+"=";
-            if(item==undefined)element.innerHTML="Done!";
-            arrayRemove(item);
-            document.getElementById("code").value='';
-            startCal=Date.now();
+              });
             }
-            else {
-                // alert("BẠN ĐÃ THUA. "+diem+" ĐIỂM. THỜI GIAN : "+millisToMinutesAndSeconds(Date.now()-d));
-                // location.reload();
-                map.set(item+"="+value,0);
-                if(arrayExpression.length==0){
-                document.getElementById("code").value='';
-                alert("BẠN ĐÃ THUỘC BẢNG CỬU CHƯƠNG. BẠN ĐƯỢC "+diem+" ĐIỂM. THỜI GIAN HOÀN THÀNH LÀ "+ millisToMinutesAndSeconds(Date.now()-d));
-                xuat(map);
-                clearInterval(myVar);
-                }
-                item = arrayExpression[Math.floor(Math.random()*arrayExpression.length)];
-                element.innerHTML=item+"=";
-                if(item==undefined)element.innerHTML="Done!";
-                arrayRemove(item);
-                document.getElementById("code").value='';
-                startCal=Date.now();
+            if (!reg.active && (reg.installing || reg.waiting)) {
+              // No active web worker and we have installed or are installing
+              // one for the first time. Simply wait for it to activate.
+              waitForActivation(reg.installing || reg.waiting);
+            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
+              // When the app updates the serviceWorkerVersion changes, so we
+              // need to ask the service worker to update.
+              console.log('New service worker available.');
+              reg.update();
+              waitForActivation(reg.installing);
+            } else {
+              // Existing service worker is still good.
+              console.log('Loading app from service worker.');
+              loadMainDartJs();
             }
-        }
+          });
+
+        // If service worker doesn't succeed in a reasonable amount of time,
+        // fallback to plaint <script> tag.
+        setTimeout(() => {
+          if (!scriptLoaded) {
+            console.warn(
+              'Failed to load app from service worker. Falling back to plain <script> tag.',
+            );
+            loadMainDartJs();
+          }
+        }, 4000);
+      });
+    } else {
+      // Service workers not supported. Just drop the <script> tag.
+      loadMainDartJs();
     }
-    function xuat(maparr) {
-        // body...
-        let temp="";
-        let mapSort1 = new Map([...maparr.entries()].sort((a, b) => b[1] - a[1]));
-        for (const [key, value] of mapSort1.entries()) {
-            temp+=key+" : "+value+"s<br>";
-        }
-        document.getElementById("analytic").innerHTML=temp;
-    }
-    function arrayRemove(value) { 
-    
-        const index = arrayExpression.indexOf(value);
-if (index > -1) {
-  arrayExpression.splice(index, 1);
-}
-    }
-    var myVar = setInterval(myTimer, 1000);
- var d = Date.now();
-function myTimer() {
-  document.getElementById("time").innerHTML = millisToMinutesAndSeconds(Date.now()-d);
-}
-function millisToMinutesAndSeconds(millis) {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-}
-</script>
+  </script>
 </body>
 </html>
