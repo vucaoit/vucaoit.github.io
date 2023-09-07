@@ -1,0 +1,98 @@
+.home {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.text-query {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.position-fixed {
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.toast-header {
+    background-color: lawngreen;
+}
+
+.toast-header .me-auto {
+    color: black;
+}
+
+.toast-header .btn-close {
+    color: black;
+}
+
+.icon-button {
+    color: black;
+}
+
+.icon-button:hover {
+    cursor: pointer;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+}
+
+.info-container {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.skype-icon-container {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.skype-icon {
+    font-size: 24px;
+    color: dodgerblue;
+}
+
+.info-text {
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    color: #333;
+}
+
+.document {
+    top: 20px;
+    left: 20px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 15pt;
+    border-radius: 8px;
+    color: white;
+    padding: 5px 10px;
+    background-color: #6495ed;
+}
+
+a:hover {
+    background-color: #3b77e8;
+    color: white;
+}

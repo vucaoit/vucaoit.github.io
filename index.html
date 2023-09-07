@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <script src="home.js"></script>
+    <title>Jira Tool</title>
+</head>
+
+<body>
+    <div class="container home">
+        <input id="inp" type="text" class="form-control" placeholder="Paste here" aria-label="Username"
+            aria-describedby="basic-addon1" required>
+        <button id="btn" type="button" class="btn btn-primary" onclick="generateJQL()">Generate JQL</button>
+        <div class="text-query">
+            <p id="result">query</p>
+            <button id="btn-copy" type="button" class="btn btn-primary" onclick="generateJQL()">Copy</button>
+        </div>
+    </div>
+    <div class="toast position-fixed" data-bs-delay="2000" data-bs-autohide="true">
+        <div class="toast-header">
+            <strong class="me-auto">Jira Tool</strong>
+            <i class="bi bi-x-circle-fill icon-button" data-bs-dismiss="toast"></i>
+        </div>
+        <div class="toast-body">
+            <p>The JQL query has been copied.</p>
+        </div>
+    </div>
+    <div class="position-fixed"
+        style="display: flex;flex-direction: column;justify-items: center;justify-content: center;">
+        <a href="https://github.com/vucaoit/vucaoit.github.io/blob/main/README.md" target="_blank">Docs</a>
+        <div class="info-container">
+            <div class="skype-icon-container">
+                <i class="fab fa-skype skype-icon"></i>
+            </div>
+            <div class="info-text">
+                <span>caodev16</span>
+            </div>
+        </div>
+    </div>
+    <script src="home.js"></script>
+</body>
+
+</html>
